@@ -1,6 +1,19 @@
 <div class="container Center">
     <form [formGroup]="familyForm" (ngSubmit)="onSubmit()" class="family-form">
       <h2 class="form-title">Add Family </h2>
+
+      <div class="col-md-12 mb-3">
+        <label class="form-label">User Name</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-person"></i></span>
+          <input 
+            type="text" 
+            class="form-control"
+            formControlName="username" 
+            readonly>
+        </div>
+      </div>
+      
   
       <!-- Surname Input -->
       <div class="form-group">

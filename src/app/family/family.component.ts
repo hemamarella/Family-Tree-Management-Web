@@ -12,6 +12,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MemberserviceService } from '../memberservice.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-family',
@@ -23,21 +24,30 @@ export class FamilyComponent {
   familyForm!: FormGroup;
   submitMessage: string = '';
   isSubmittedSuccessfully: boolean = false;
-  familyMembers: any[] = [];    
+  familyMembers: any[] = [];   
 
   constructor(
     private fb: FormBuilder,
- private memberService: MemberserviceService  ) {}
+ private memberService: MemberserviceService,
+ private authService: AuthService  ) {}
 
   ngOnInit(): void {
     const today = new Date(); // Get current date
     const todayTimestamp = today.getTime(); // Get timestamp for today
     const minDate = new Date('1900-01-01'); // Minimum date
     const minDateTimestamp = minDate.getTime(); // Get timestamp for minimum date
+  
+    const user = this.authService.getUserDetails();
+
+    this.familyForm.patchValue({
+      username: user.username,
+    email: user.email
+    });
 
     // Initialize the form
     this.familyForm = this.fb.group({
       Id : null,
+      username: [{ value: '', disabled: true }],  // Disabled because it's read-only
       Surname: ['', [Validators.required], [this.surnameValidator.bind(this)]],
       Color: ['', Validators.required],
       Description: [''],
