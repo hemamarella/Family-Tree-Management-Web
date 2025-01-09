@@ -6,22 +6,19 @@
     <table class="lookup-table" >
       <thead>
         <tr>
-          <!-- <th></th> -->
+          <th></th>
           <th>Surname</th>
-          <th>Color</th>
+          <!-- <th>Color</th> -->
           <th>Description</th>
           <th>CreatedDate</th>
-
-          <th>CreatedBy</th>
-          
-
-
+          <!-- <th>CreatedBy</th> -->
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
 
         <ng-container *ngFor="let lookup of lookups; let i = index">
+          
           <tr>
             <td>
               <button class="expand-btn" (click)="toggleExpand(i)">
@@ -29,9 +26,10 @@
               </button>
             </td>
             <td>{{ lookup.Surname }}</td>
-            <td>{{ lookup.Color }}</td>
+            <!-- <td>{{ lookup.Color }}</td> -->
             <td>{{ lookup.Description}}</td>
-            <td>{{ lookup.CreatedAt}}</td>
+            <td>{{ lookup.CreatedDate | date: 'dd-MM-yyyy' }}</td>
+            <!-- <td>{{ lookup.CreatedBy}}</td> -->
 
             <!-- Parent Delete -->
           <td>
@@ -48,74 +46,43 @@
                 <thead>
                   <tr>
                     <!-- <th> </th> -->
-                    <th>Image</th>
+                    <th>Photo</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Gender</th>
                     <th>Date Of Birth</th>
-                    <th>CreatedAt</th>
-                    <th>CreatedBy</th>
+                    <th>CreatedDate</th>
+                    <!-- <th>CreatedBy</th> -->
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <ng-container *ngFor="let member of lookup.Members; let j = index">
                     <tr>
-                      <td>
+                      <!-- <td>
                         <button class="expand-btn" (click)="toggleSubExpand(j)">
                           {{ expandedSubRow === j ? '▼' : '▶' }}
                         </button>
-                      </td>
-                       <td>{{ member.Image }}</td>
+                      </td> -->
+                       <td>{{ member.Photo }}</td>
                       <td>{{ member.FirstName}}</td>
                       <td>{{ member.LastName}}</td>
                       <td>{{ member.Gender }}</td>
-                      <td>{{ member.DateOfBirth }}</td>
-                      <td>{{ member.CreatedAt}}</td>
+                      <td>{{ member.DateOfBirth| date: 'dd-MM-yyyy' }}</td>
+                      <td>{{ member.CreatedDate | date: 'dd-MM-yyyy' }}</td>
+                      <!-- <td>{{ member.CreatedBy}}</td> -->
+
                       
                    
                       <td>
                         <i class="fa-thin fa-pen-to-square" (click)="openEditForm1(member)"></i>
 
                         &nbsp;
-                        <i class="fa-thin fa-trash" (click)="deleteChild(i, member.Id)"></i>
+                        <i class="fa-thin fa-trash" (click)="deleteMember(i, member.Id)"></i>
                       </td>
                     </tr>
   
-                    <!-- Sub-Child Table: Relationships -->
-                    <tr *ngIf="expandedSubRow === j">
-                      <td colspan="6">
-                        <table class="lookup-table">
-                          <thead>
-                            <tr>
-                              <!-- <th>Id</th> -->
-                              <th>ParentMember</th>                    
-                              <th>ChildMember</th>
-                              <th>
-                                RelationName
-                                </th>
-                              <th>Action</th>
-                            </tr>     
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let relationship of member.Relationships; let k = index">
-                              <!-- <td>{{ relationship.Id }}</td> -->
-                              <td>{{ relationship.ParentMemberId }}</td>
-                              <td>{{ relationship.ChildMemberId }}</td>
-                              <td>{{ relationship.RelationName
-                                 }}</td>
-                              <td>
-                                <i class="fa-thin fa-pen-to-square " (click)="openEditForm2(relationship)"></i>
-
-                                &nbsp;
-                                <!-- <i class="fa-thin fa-trash" (click)="deleteSubChild(i, j, relationship.ChildMemberId)"></i> -->
-                                <i class="fa-thin fa-trash" (click)="deleteRelation(relationship.Id)"></i>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
+                    
                   </ng-container>
                 </tbody>
               </table>
@@ -132,7 +99,7 @@
       <h3>Edit Family</h3>
       <form #familyForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <label for="surname">Surname*</label>
+          <label for="surname">SurName:</label>
           <input
             id="surname"
             [(ngModel)]="editData.Surname"
@@ -145,7 +112,7 @@
           </div>
         </div>
   
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="color">Color:</label>
           <input
             id="color"
@@ -153,11 +120,11 @@
             name="color"
             required
             #color="ngModel"
-          />
-          <div *ngIf="color.invalid && color.touched" class="error">
+          /> -->
+          <!-- <div *ngIf="color.invalid && color.touched" class="error">
             Color is required.
           </div>
-        </div>
+        </div> -->
   
         <div class="form-group">
           <label for="description">Description:</label>
@@ -189,91 +156,105 @@
     </div>
   </div>
   
+
+
+
 <!-- ---------members ----- -->
 
-<div *ngIf="isEditFormVisible1" class="edit-form">
-    <h3>Edit Members</h3>
-    <form #membersForm="ngForm" (ngSubmit)="updateData1()">
-      <div>
-        <label for="firstname">Firstname:</label>
-        <input
-          id="firstname"
-          [(ngModel)]="editData1.FirstName"
-          name="firstname"
-          required
-          #firstname="ngModel"
-        />
-        <!-- Error Message -->
-        <div *ngIf="firstname.invalid && firstname.touched" class="error">
-          First name is required.
+
+  <div *ngIf="isEditFormVisible1" class="modal-overlay">
+    <div class="modal-content">
+      <h3>Member</h3>
+      <form #memberForm="ngForm" (ngSubmit)="onSubmitMemberForm()">
+        <div class="form-group">
+          <label for="memberSelect">Select Member</label>
+          <select id="memberSelect" [(ngModel)]="editData1.Photo" name="selectedMember" class="form-control" required>
+          </select>
         </div>
-      </div>
-      <div>
-        <label for="lastname">Lastname:</label>
-        <input
-          id="lastname"
-          [(ngModel)]="editData1.LastName"
-          name="lastname"
-          required
-          #lastname="ngModel"
-        />
-        <!-- Error Message -->
-        <div *ngIf="lastname.invalid && lastname.touched" class="error">
-          Last name is required.
+      
+        <div class="form-group">
+          <label for="field2">Member Photo</label>
+          <img *ngIf="selectedMember" [src]="selectedMember.Photo" alt="Member Photo" class="img-fluid" />
+          <div *ngIf="!selectedMember" class="alert alert-warning">
+            No photo available for the selected member.
+          </div>
         </div>
-      </div>
-      <div>
-        <label for="gender">Gender:</label>
-        <input
-          id="gender"
-          [(ngModel)]="editData1.Gender"
-          name="gender"
-          required
-          #gender="ngModel"
-        />
-        <!-- Error Message -->
-        <div *ngIf="gender.invalid && gender.touched" class="error">
-          Gender is required.
+        <div class="form-group">
+          <label for="firstname">First Name</label>
+          <input
+            id="firstname"
+            [(ngModel)]="editData1.FirstName" 
+            name="firstname"
+            required
+            #firstname="ngModel"
+          />
+          <div *ngIf="firstname.invalid && firstname.touched" class="error">
+            First Name is required.
+          </div>
         </div>
-      </div>
-      <div>
-        <label for="dateofbirth">Date of Birth:</label>
-        <input
-          id="dateofbirth"
-          [(ngModel)]="editData1.DateOfBirth"
-          name="dateofbirth"
-          required
+  
+        <div class="form-group">
+          <label for="lastname">Last Name</label>
+          <input
+            id="lastname"
+            [(ngModel)]="editData1.LastName" 
+            name="lastname"
+            required
+            #lastname="ngModel"
+          />
+          <div *ngIf="lastname.invalid && lastname.touched" class="error">
+            Last Name is required.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="gender">Gender:</label>
+          <input
+            id="gender"
+            [(ngModel)]="editData1.Gender"
+            name="gender"
+            required
+            #gender="ngModel"
+          />
+          <div *ngIf="gender.invalid && gender.touched" class="error">
+            Gender is required.
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="dateofbirth">Date of Birth: </label>
+          <input
           type="date"
-          #dateofbirth="ngModel"
-        />
-        <!-- Error Message -->
-        <div *ngIf="dateofbirth.invalid && dateofbirth.touched" class="error">
-          Date of Birth is required.
+            id="dateofbirth"
+            [(ngModel)]="editData1.DateOfBirth"
+            name="dateofbirth"
+            required
+            #dateofbirth="ngModel"
+          />
+          <div *ngIf="dateofbirth.invalid && dateofbirth.touched" class="error">
+            Date of Birth is required.
+          </div>
         </div>
-      </div>
-      <button type="submit" [disabled]="membersForm.invalid">Save</button>
-      <button type="button" (click)="closeEditForm1()">Close</button>
-    </form>
-</div>
+        
+        <div class="modal-buttons">
+          <button type="submit" [disabled]="memberForm.invalid" class="btn save-btn">
+            Save
+          </button>
+          <button
+            type="button"
+            (click)="closeEditForm1()"
+            class="btn close-btn"
+          >
+            Close
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
 
-<!-- ---Relationships edit form----- -->
 
-<div *ngIf="isEditFormVisible2" class="edit-form">
-  <h3>Edit FamilyRelations</h3>
-  <form (ngSubmit)="updateData2()">
-    <div>
-      <label for="parentmemberid">ParentMemberId</label>
-      <input id="parentmemberid" [(ngModel)]="editData2.ParentMemberId" name="parentmemberid" required />
-    </div>
-    <div>
-      <label for="childmemberid">ChildMemberId:</label>
-      <input id="childmemberid" [(ngModel)]="editData2.ChildMemberId" name="childmemberid" required />
-    </div>
-    <div>
-      <label for="relationname">RelationName:</label>
-      <input id="relationname" [(ngModel)]="editData2.RelationName" name="relationname" required />
-    </div>
-    <button type="submit">Save</button>
-    <button type="button" (click)="closeEditForm2()">Close</button>
-  </form>
-</div>
+
+
+
+

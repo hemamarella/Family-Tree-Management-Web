@@ -24,6 +24,7 @@ import { GridviewComponent } from './gridview/gridview.component';
 import { MemberformComponent } from './memberform/memberform.component';
 import { FamilyComponent } from './family/family.component';
 import { RelationsComponent } from './relations/relations.component';
+import { RelationsviewComponent } from './relationsview/relationsview.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { RelationsComponent } from './relations/relations.component';
     GridviewComponent,
     MemberformComponent,
     FamilyComponent,
-    RelationsComponent
+    RelationsComponent,
+    RelationsviewComponent
   ],
   imports: [
     BrowserModule,

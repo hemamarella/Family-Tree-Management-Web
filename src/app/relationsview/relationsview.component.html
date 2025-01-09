@@ -1,0 +1,102 @@
+<div class="container-fluid">
+  <h2 class="title"><b>FAMILY RELATIONS</b></h2>
+
+  <table class="lookup-table">
+    <thead>
+      <tr>
+        <th>Parent Member</th>
+        <th>Child Member</th>
+        <th>Relation Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let lookup of lookups">
+        <ng-container *ngFor="let member of lookup.Members">
+          <tr *ngFor="let relationship of member.Relationships">
+            <td>{{ relationship.ParentMemberId }}</td>
+            <td>{{ relationship.ChildMemberId }}</td>
+            <td>{{ relationship.RelationName }}</td>
+            <td>
+              <i class="fa-thin fa-pen-to-square" (click)="openEditForm2(relationship)"></i>
+              &nbsp;
+              <i class="fa-thin fa-trash" (click)="deleteRelation(relationship.Id)"></i>
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
+
+<!-- Relations Edit Form -->
+<!-- <div *ngIf="isEditFormVisible2" class="edit-form">
+    <h3>Edit Family Relations</h3>
+    <form (ngSubmit)="updateData2()">
+      <div>
+        <label for="parentmemberid">Parent Member ID:</label>
+        <input id="parentmemberid" [(ngModel)]="editData2.ParentMemberId" name="parentmemberid" required />
+      </div>
+      <div>
+        <label for="childmemberid">Child Member ID:</label>
+        <input id="childmemberid" [(ngModel)]="editData2.ChildMemberId" name="childmemberid" required />
+      </div>
+      <div>
+        <label for="relationname">Relation Name:</label>
+        <input id="relationname" [(ngModel)]="editData2.RelationName" name="relationname" required />
+      </div>
+      <button type="submit">Save</button>
+      <button type="button" (click)="closeEditForm2()">Close</button>
+    </form>
+  </div> -->
+
+
+
+
+<div *ngIf="isEditFormVisible2" class="modal-overlay">
+  <div class="modal-content">
+    <h3>Relations</h3>
+    <form #familyForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="parentmember">Parent Member</label>
+        <input id="parentmember" [(ngModel)]="editData2.ParentMemberId" name="parentmember" required
+          #parentmember="ngModel" readonly />
+        <!-- <div *ngIf="parentmember.invalid && parentmember.touched" class="error">
+            Parent Member is required.
+          </div> -->
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="childmember">Child Member</label>
+        <input id="childmember" [(ngModel)]="editData2.ChildMemberId" name="childmember" required #childmember="ngModel"
+          readonly />
+        <div *ngIf="childmember.invalid && childmember.touched" class="error">
+          Child Member is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="RelationId" class="form-label fw-semibold">Relation*</label>
+        <select id="RelationId" [(ngModel)]="editData2.RelationName" name="RelationId" required class="form-select"
+          (ngModelChange)="updateRelationNameFromDropdown()">
+          <option value="" disabled>Select Relation</option>
+          <option *ngFor="let relation of relations" [value]="relation.Id">
+            {{ relation.Name }}
+          </option>
+        </select>
+      </div>
+
+
+
+      <div class="modal-buttons">
+        <button type="submit" [disabled]="familyForm.invalid" class="btn save-btn">
+          Save
+        </button>
+        <button type="button" (click)="closeEditForm2()" class="btn close-btn">
+          Close
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
