@@ -1,0 +1,135 @@
+<div class="container w-50">
+    <!-- <h2 class="text-center fw-bold mb-2">Add Member</h2> -->
+  
+    <form [formGroup]="memberForm" (ngSubmit)="onSubmit()" novalidate class="member-form">
+        <h2 class="text-center fw-bold">Add Member</h2>
+      <!-- Existing Form Fields -->
+      <div class="mb-2">
+        <label for="FamilyId" class="form-label fw-semibold">Family Name*</label>
+        
+        <select 
+          id="FamilyId" 
+          class="form-select" 
+          formControlName="FamilyId" 
+          [ngClass]="{
+            'border-success': memberForm.get('FamilyId')?.touched && memberForm.get('FamilyId')?.valid,
+            'border-danger': memberForm.get('FamilyId')?.touched && memberForm.get('FamilyId')?.invalid
+          }"
+          required
+        >
+          <option value="" disabled >Select Family</option>
+          <option *ngFor="let family of familyNames" [value]="family.Id">{{ family.Surname }}</option>
+        </select>
+        
+        <div class="invalid-feedback">Please select a family name.</div>
+      </div>
+    
+      <!-- <div class="mb-2">
+        <label for="UserId" class="form-label fw-semibold">User Name</label>
+        <select id="UserId" class="form-select" formControlName="UserId"
+          [ngClass]="{
+            'border-success': memberForm.get('UserId')?.touched && memberForm.get('UserId')?.valid,
+            'border-danger': memberForm.get('UserId')?.touched && memberForm.get('UserId')?.invalid
+          }" 
+         >
+          <option value="" disabled>Select User</option>
+          <option *ngFor="let user of users" [value]="user.Id">{{user.Username}}</option>
+      </select>
+      <div class="invalid-feedback">Enter user name</div>
+      </div> -->
+      <div class="mb-2">
+        <label for="FirstName" class="form-label fw-semibold">First Name*</label>
+        <input id="FirstName" type="text" class="form-control" formControlName="FirstName"
+          [class.is-invalid]="memberForm.get('FirstName')?.touched && memberForm.get('FirstName')?.invalid"
+          placeholder="Enter Member First Name" 
+          [ngClass]="{
+            'border-success': memberForm.get('FirstName')?.touched && memberForm.get('FirstName')?.valid,
+            'border-danger': memberForm.get('FirstName')?.touched && memberForm.get('FirstName')?.invalid
+          }"/>
+  <div *ngIf="memberForm.get('FirstName')?.touched && memberForm.get('FirstName')?.invalid" class="invalid-feedback">
+    <div *ngIf="memberForm.get('FirstName')?.errors?.['minlength']">
+      <!-- Member First Name must be at least 3 characters. -->
+    </div>
+    <div *ngIf="memberForm.get('FirstName')?.errors?.['maxlength']">
+      <!-- Member First Name cannot be more than 20 characters. -->
+    </div>
+  </div>        
+    <div class="invalid-feedback">Please select First Name.</div>
+  
+  </div>
+      <!-- <div class="mb-2">
+        <label for="LastName" class="form-label fw-semibold">Last Name*</label>
+        <input id="LastName" type="text" class="form-control" formControlName="LastName"
+          [class.is-invalid]="memberForm.get('LastName')?.touched && memberForm.get('LastName')?.invalid"
+          placeholder="Enter Member Last Name" 
+          [ngClass]="{
+            'border-success': memberForm.get('LastName')?.touched && memberForm.get('LastName')?.valid,
+            'border-danger': memberForm.get('LastName')?.touched && memberForm.get('LastName')?.invalid
+          }"/>
+  <div *ngIf="memberForm.get('LastName')?.touched && memberForm.get('LastName')?.invalid" class="invalid-feedback">
+    <div *ngIf="memberForm.get('LastName')?.errors?.['minlength']">
+      Member Last Name must be at least 3 characters.
+    </div>
+    <div *ngIf="memberForm.get('LastName')?.errors?.['maxlength']">
+      Member Last Name cannot be more than 15 characters.
+    </div>
+  </div>      <div class="invalid-feedback">Please select Last Name.</div>
+  
+      </div> -->
+      <div class="mb-2">
+        <label for="Gender" class="form-label fw-semibold">Gender*</label>
+        <select id="Gender" class="form-select" formControlName="Gender"
+          [class.is-invalid]="memberForm.get('Gender')?.touched && memberForm.get('Gender')?.invalid"
+          [ngClass]="{
+            'border-success': memberForm.get('Gender')?.touched && memberForm.get('Gender')?.valid,
+            'border-danger': memberForm.get('Gender')?.touched && memberForm.get('Gender')?.invalid
+          }">
+          <option value="" >Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <div class="invalid-feedback">Please select a gender.</div>
+      </div>
+  
+      <div class="mb-2">
+        <label for="DateOfBirth" class="form-label fw-semibold">Date of Birth*</label>
+        <input id="DateOfBirth" type="date" class="form-control" formControlName="DateOfBirth" 
+        min="1900-01-01" 
+        [max]="maxDate" 
+          [class.is-invalid]="memberForm.get('DateOfBirth')?.touched && memberForm.get('DateOfBirth')?.invalid" [ngClass]="{
+            'border-success': memberForm.get('DateOfBirth')?.touched && memberForm.get('DateOfBirth')?.valid,
+            'border-danger': memberForm.get('DateOfBirth')?.touched && memberForm.get('DateOfBirth')?.invalid
+          }" />
+        <div class="invalid-feedback">Please select a valid date of birth.</div>
+      </div>
+  
+      <div class="mb-1">
+        <label for="Photo" class="form-label fw-semibold">Upload Photo</label>
+        <input id="Photo" type="file" class="form-control " formControlName="uploadedPhoto" (change)="onFileChange($event)" />
+      </div>
+      <div class="btn1 mt-3">
+      <button type="submit" class="btn btn-primary fw-bold px-5 me-5" [disabled]="memberForm.invalid">Submit</button>
+      <button type="reset" class="btn btn-primary fw-bold px-5 " (click)="onClear()">Clear</button>
+    </div>
+    </form>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal" tabindex="-1" [ngClass]="{ show: displayModal }"
+    style="display: block; background: rgba(0, 0, 0, 0.5);" *ngIf="displayModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ isSubmittedSuccessfully ? 'Success' : 'Error' }}</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p>{{ submitMessage }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>

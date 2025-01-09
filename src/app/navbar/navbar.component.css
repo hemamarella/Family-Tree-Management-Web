@@ -1,0 +1,239 @@
+/* .navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    height: 60px;
+    padding: 0;
+  }
+
+  .logo {
+    height: 32px;
+    width: auto;
+    transition: transform 0.2s ease;
+  }
+
+  .navbar-brand:hover .logo {
+    transform: scale(1.05);
+  }
+
+  .brand-text {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1.2rem;
+  }
+
+  .menu-link {
+    color: #2c3e50;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .menu-link:hover {
+    background-color: #f8f9fa;
+    color: #ff5722;
+  }
+
+  .custom-dropdown {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 0.5rem;
+    min-width: 220px;
+  }
+
+  .dropdown-item {
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    margin: 2px 0;
+    color: #2c3e50;
+    transition: all 0.2s ease;
+  }
+
+  .dropdown-item i {
+    color: #6c757d;
+    transition: color 0.2s ease;
+  }
+
+  .dropdown-item:hover {
+    background-color: #f8f9fa;
+    color: #ff5722;
+  }
+
+  .dropdown-item:hover i {
+    color: #ff5722;
+  }
+
+  .dropdown-item.active {
+    background-color: #ff57221a;
+    color: #ff5722;
+  }
+
+  .dropdown-item.active i {
+    color: #ff5722;
+  }
+
+  .custom-toggler {
+    border: none;
+    padding: 0.25rem;
+  }
+
+  .custom-toggler:focus {
+    box-shadow: none;
+  }
+
+  @media (max-width: 991.98px) {
+    .navbar-collapse {
+      background: white;
+      padding: 1rem;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    }
+
+    .custom-dropdown {
+      box-shadow: none;
+      border: none;
+      padding: 0;
+    }
+
+    .dropdown-item {
+      padding: 0.8rem 1rem;
+    }
+  } */
+
+
+  .navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    height: 60px;
+    padding: 0;
+    z-index: 1030;
+  }
+  
+  .logo {
+    height: 32px;
+    width: auto;
+    transition: transform 0.2s ease;
+  }
+  
+  .navbar-brand:hover .logo {
+    transform: scale(1.05);
+  }
+  
+  .brand-text {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1.2rem;
+  }
+  
+  /* Sidebar Toggle Button */
+  .sidebar-toggle {
+    background: transparent;
+    border: none;
+    color: #2c3e50;
+    font-size: 1.5rem;
+    padding: 0.25rem 0.75rem;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar-toggle:hover {
+    color: #ff5722;
+    transform: scale(1.1);
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 60px;
+    left: -280px;
+    height: calc(100vh - 60px);
+    width: 280px;
+    background-color: #ffffff;
+    box-shadow: 2px 0 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    z-index: 1020;
+  }
+  
+  .sidebar.open {
+    left: 0;
+  }
+  
+  .sidebar-content {
+    padding: 1rem 0;
+    height: 100%;
+    overflow-y: auto;
+  }
+  
+  .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    color: #2c3e50;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .sidebar-item i {
+    font-size: 1.25rem;
+    margin-right: 1rem;
+    width: 24px;
+    color: #6c757d;
+  }
+  
+  .sidebar-item span {
+    font-weight: 500;
+  }
+  
+  .sidebar-item:hover {
+    background-color: #f8f9fa;
+    color: #ff5722;
+  }
+  
+  .sidebar-item:hover i {
+    color: #ff5722;
+  }
+  
+  .sidebar-item.active {
+    background-color: #ff57221a;
+    color: #ff5722;
+  }
+  
+  .sidebar-item.active i {
+    color: #ff5722;
+  }
+  
+  /* Overlay */
+  .sidebar-overlay {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1010;
+  }
+  
+  .sidebar-overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* Responsive */
+  @media (max-width: 991.98px) {
+    .sidebar {
+      width: 100%;
+      left: -100%;
+    }
+  }

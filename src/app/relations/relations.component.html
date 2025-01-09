@@ -1,0 +1,137 @@
+<div class="container w-50">  
+    <form [formGroup]="relationForm" (ngSubmit)="onSubmit()">
+     <h2 class="text-center fw-bold">Relation </h2>
+      <div class="form-group">
+        <label for="ParentFamilyId" class="form-label fw-semibold">Parent Member Family<span >*</span></label>
+        <select
+          id="ParentFamilyId"
+          formControlName="ParentFamilyId"
+          class="form-select"
+          (change)="loadMembersByFamilyId($event,'parent')"
+          [class.is-invalid]="relationForm.get('ParentFamilyId')?.touched && relationForm.get('ParentFamilyId')?.invalid"
+          [ngClass]="{
+            'border-success': relationForm.get('ParentFamilyId')?.touched && relationForm.get('ParentFamilyId')?.valid,
+            'border-danger': relationForm.get('ParentFamilyId')?.touched && relationForm.get('ParentFamilyId')?.invalid
+          }">
+          <option value="" disabled>Select Parent Member Family</option>
+          <option *ngFor="let family of families" [value]="family.Id">
+            {{ family.Surname }}
+          </option>
+        </select>
+        <div class="invalid-feedback">Please select Parent Member Family.</div>
+      </div>
+  
+  
+  
+      <div class="form-group">
+        <label for="ParentMemberId" class="form-label fw-semibold">Parent Member<span >*</span></label>
+        <select
+          id="ParentMemberId"
+          formControlName="ParentMemberId"
+          class="form-select"
+          [class.is-invalid]="relationForm.get('ParentMemberId')?.touched && relationForm.get('ParentMemberId')?.invalid"
+          [ngClass]="{
+            'border-success': relationForm.get('ParentMemberId')?.touched && relationForm.get('ParentMemberId')?.valid,
+            'border-danger': relationForm.get('ParentMemberId')?.touched && relationForm.get('ParentMemberId')?.invalid
+          }">
+          <option value="" disabled>Select Parent Member</option>
+          <option *ngFor="let member of parentMembers" [value]="member.Id">
+            {{ member.FirstName }}
+          </option>
+        </select>
+        <div class="invalid-feedback">Please select Parent Member.</div>
+      </div>
+  
+      <div class="form-group">
+        <label for="ChildFamilyId" class="form-label fw-semibold">Child Member Family<span >*</span></label>
+        <select
+          id="ChildFamilyId"
+          formControlName="ChildFamilyId"
+          class="form-select"
+          (change)="loadMembersByFamilyId($event,'Child')"
+          [class.is-invalid]="relationForm.get('ChildFamilyId')?.touched && relationForm.get('ChildFamilyId')?.invalid"
+          [ngClass]="{
+            'border-success': relationForm.get('ChildFamilyId')?.touched && relationForm.get('ChildFamilyId')?.valid,
+            'border-danger': relationForm.get('ChildFamilyId')?.touched && relationForm.get('ChildFamilyId')?.invalid
+          }">
+          <option value="" disabled>Select Child Member Family</option>
+          <option *ngFor="let family of families1" [value]="family.Id">
+            {{ family.Surname }}
+          </option>
+        </select>
+        <div class="invalid-feedback">Please select Child Member Family.</div>
+      </div>
+  
+  
+     <div class="form-group">
+    <label for="ChildMemberId" class="form-label fw-semibold">Child Member*</label>
+    <select
+      id="ChildMemberId"
+      formControlName="ChildMemberId"
+      class="form-select"
+      [class.is-invalid]="relationForm.get('ChildMemberId')?.touched && relationForm.get('ChildMemberId')?.invalid"
+      [ngClass]="{
+        'border-success': relationForm.get('ChildMemberId')?.touched && relationForm.get('ChildMemberId')?.valid,
+        'border-danger': relationForm.get('ChildMemberId')?.touched && relationForm.get('ChildMemberId')?.invalid
+      }"
+    >
+      <option value="" disabled>Select Child Member</option>
+      <option *ngFor="let member of filteredChildMembers" [value]="member.Id">
+        {{ member.FirstName }}
+      </option>
+    </select>
+    <div class="invalid-feedback">Please select Child Member.</div>
+  </div>
+  
+  
+      <div class="form-group mb-3">
+        <label for="RelationId" class="form-label fw-semibold">Relation*</label>
+        <select
+          id="RelationId"
+          formControlName="RelationId"
+          class="form-select"
+          [class.is-invalid]="relationForm.get('RelationId')?.touched && relationForm.get('RelationId')?.invalid"
+          [ngClass]="{
+            'border-success': relationForm.get('RelationId')?.touched && relationForm.get('RelationId')?.valid,
+            'border-danger': relationForm.get('RelationId')?.touched && relationForm.get('RelationId')?.invalid
+          }">
+          <option value="" disabled>Select Relation</option>
+          <option *ngFor="let relation of relations" [value]="relation.Id">
+            {{ relation.Name }}
+          </option>
+        </select>
+        <div class="invalid-feedback">Please select Relation.</div>
+      </div>
+  
+      <!-- <button type="submit" class="btn btn-primary" [disabled]="relationForm.invalid">
+        Submit
+      </button> -->
+      <div class="form-group ">
+        <div class="btn1 mt-3">
+        <button type="submit" class="btn btn-primary fw-bold px-5 me-5" [disabled]="relationForm.invalid">Submit</button>
+        <button type="reset" class="btn btn-primary fw-bold px-5 " (click)="onClear()">Clear</button>
+        </div>
+      </div>
+    </form>
+  
+  
+  </div>
+  
+  <div class="modal mt-5" tabindex="-1" [ngClass]="{ show: displayModal }"
+    style="display: block; background: rgba(0, 0, 0, 0.5);" *ngIf="displayModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ isSubmittedSuccessfully ? 'Success' : 'Error' }}</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p>{{ submitMessage }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

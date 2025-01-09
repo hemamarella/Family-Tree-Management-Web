@@ -1,0 +1,32 @@
+.user-profile-dropdown {
+    position: relative;
+  }
+  .user-avatar img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+  }
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  /* .dropdown-menu {
+    min-width: 100px;
+    padding: 0.5rem 0;
+  } */
+  .dropdown-menu {
+    min-width: 100px;
+    padding: 0.5rem 0;
+    position: absolute;
+    right: 0; /* Aligns the menu to the right side of the parent */
+    left: auto; /* Ensures the menu doesn't use the default left alignment */
+  }
+  .dropdown-header {
+    padding: 0.5rem 1rem;
+    background-color: #f8f9fa;
+  }
+  .dropdown-item {
+    padding: 0.5rem 1rem;
+  }
+  .dropdown-item i {
+    width: 20px;
+  }

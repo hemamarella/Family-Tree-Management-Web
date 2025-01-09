@@ -1,0 +1,29 @@
+<div class="user-profile-dropdown"(click)="toggleDropdown()">
+    <div class="d-flex align-items-center cursor-pointer">
+      <span class="d-none d-md-inline">{{user.username}}</span>
+      <div class="user-avatar ms-2">
+        <img 
+          [src]="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRrS17qvXTUKG6mZfouOKvWXL6Sl6e88-wwA&s'" 
+          alt="User Avatar"
+          class="rounded-circle">
+      </div>
+    </div>
+
+    <div class="dropdown-menu dropdown-menu-end" [ngClass]="{'show': isOpen}">
+      <div class="dropdown-header">
+        <div class="fw-bold">{{user.username}}</div>
+        <div class="text-muted small">{{user.email}}</div>
+      </div>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" routerLink="profile">
+        <i class="bi bi-person me-2"></i>My Profile
+      </a>
+      <a class="dropdown-item" routerLink="change-password">
+        <i class="bi bi-key me-2"></i>Change Password
+      </a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item text-danger" href="#" (click)="logout($event)">
+        <i class="bi bi-box-arrow-right me-2"></i>Logout
+      </a>
+    </div>
+  </div>

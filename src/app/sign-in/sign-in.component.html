@@ -1,0 +1,116 @@
+<!-- <div class="card bg-transparent border-0">
+    <div class="card-body">
+      <h2 class="text-white mb-4 d-flex justify-content-center">Sign in</h2>
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <input 
+            type="email" 
+            class="form-control" 
+            placeholder="Email Address" 
+            formControlName="email"
+            [ngClass]="{'is-invalid': f['email'].touched && f['email'].errors}">
+          <div class="invalid-feedback" *ngIf="f['email'].touched && f['email'].errors">
+            <div *ngIf="f['email'].errors['required']">Email is required</div>
+            <div *ngIf="f['email'].errors['email']">Please enter a valid email address</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <input 
+            type="password" 
+            class="form-control" 
+            placeholder="Password" 
+            formControlName="password"
+            [ngClass]="{'is-invalid': f['password'].touched && f['password'].errors}">
+          <div class="invalid-feedback" *ngIf="f['password'].touched && f['password'].errors">
+            <div *ngIf="f['password'].errors['required']">Password is required</div>
+            <div *ngIf="f['password'].errors['minlength']">Password must be at least 8 characters</div>
+          </div>
+        </div>
+        <div class="mb-3 form-check">
+          <input 
+            type="checkbox" 
+            class="form-check-input" 
+            id="remember" 
+            formControlName="rememberMe">
+          <label class="form-check-label text-white" for="remember">Remember Me</label>
+        </div>
+        <button type="submit" class="btn btn-signin text-white w-100">
+          Sign in now
+        </button>
+        <div class="text-center mt-3">
+          <a href="forgot-password" class="text-white text-decoration-none">Forgot Password</a>
+        </div>
+        <div class="text-center mt-3">
+          <span class="text-white">Don't have an account? </span>
+          <a [routerLink]="['/signup']" class="text-white text-decoration-none"><b>Sign up</b></a>
+        </div>
+      </form>
+    </div>
+  </div> -->
+
+
+  <div class="card bg-transparent border-0">
+    <div class="card-body">
+      <h2 class="text-white mb-4 d-flex justify-content-center">Sign in</h2>
+      <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+
+        <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  
+        <div class="mb-3">
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Email Address*"
+            formControlName="email"
+            [ngClass]="{ 'is-invalid': f['email'].touched && f['email'].errors }"
+          />
+          <div class="invalid-feedback" *ngIf="f['email'].touched && f['email'].errors">
+            <div *ngIf="f['email'].errors['required']">Email is required</div>
+            <div *ngIf="f['email'].errors['email']">Please enter a valid email address</div>
+          </div>
+        </div>
+  
+        <div class="mb-3 position-relative">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            class="form-control"
+            placeholder="Password*"
+            formControlName="password"
+            [ngClass]="{ 'is-invalid': f['password'].touched && f['password'].errors }"
+          />
+          <!-- <i
+            class="eye-icon bi"
+            [class]="showPassword ? 'bi-eye-slash' : 'bi-eye'"
+            (click)="togglePasswordVisibility()"
+          ></i> -->
+          <div class="invalid-feedback" *ngIf="f['password'].touched && f['password'].errors">
+            <div *ngIf="f['password'].errors['required']">Password is required</div>
+            <div *ngIf="f['password'].errors['minlength']">Password must be at least 8 characters</div>
+          </div>
+        </div>
+  
+        <!-- Remember Me -->
+        <!-- <div class="mb-3 form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="remember"
+            formControlName="rememberMe"
+          />
+          <label class="form-check-label text-white" for="remember">Remember Me</label>
+        </div> -->
+  
+        <button type="submit" class="btn btn-signin text-white w-100">Sign in now</button>
+  
+        <div class="text-center mt-3">
+          <a href="forgot-password" class="text-white text-decoration-none">Forgot Password</a>
+        </div>
+        <div class="text-center mt-3">
+          <span class="text-white">Don't have an account? </span>
+          <a [routerLink]="['/signup']" class="text-white text-decoration-none"><b>Sign up</b></a>
+        </div>
+      </form>
+    </div>
+  </div>
+  

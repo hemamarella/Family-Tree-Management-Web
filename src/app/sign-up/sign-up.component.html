@@ -1,0 +1,157 @@
+<!-- <div class="card bg-transparent border-0">
+    <div class="card-body">
+      <h2 class="text-white mb-4 d-flex justify-content-center">Sign up</h2>
+      <form (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="First Name" 
+              [(ngModel)]="signUpData.firstName" 
+              name="firstName">
+          </div>
+          <div class="col-md-6 mb-3">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Last Name" 
+              [(ngModel)]="signUpData.lastName" 
+              name="lastName">
+          </div>
+        </div>
+        <div class="mb-3">
+          <select 
+            class="form-select" 
+            [(ngModel)]="signUpData.gender" 
+            name="gender">
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <input 
+            type="email" 
+            class="form-control" 
+            placeholder="Email Address" 
+            [(ngModel)]="signUpData.email" 
+            name="email">
+        </div>
+        <div class="mb-3">
+          <input 
+            type="password" 
+            class="form-control" 
+            placeholder="Password" 
+            [(ngModel)]="signUpData.password" 
+            name="password">
+        </div>
+        <div class="mb-3">
+          <input 
+            type="password" 
+            class="form-control" 
+            placeholder="Confirm Password" 
+            [(ngModel)]="signUpData.confirmPassword" 
+            name="confirmPassword">
+        </div>
+
+        <div class="mb-3">
+          <select 
+            class="form-select" 
+            [(ngModel)]="signUpData.role" 
+            name="role" 
+            required>
+            <option value="">Select Role</option>
+            <option value="Admin">Admin</option>
+            <option value="Editor">Editor</option>
+            <option value="Viewer">Viewer</option>
+          </select>
+        </div>
+
+
+        <button type="submit" class="btn btn-signin text-white w-100">Create Account</button>
+        
+        
+        <div class="terms-text text-white text-center mt-4">
+          By clicking on "Create Account" you agree to 
+          <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
+        </div>
+
+
+        <div class="text-center mt-3">
+          <span class="text-white">Already have an account? </span>
+          <a [routerLink]="['/signin']" class="text-white text-decoration-none"><b>Sign in</b></a>
+        </div>
+      </form>
+    </div>
+  </div> -->
+
+
+
+  <div class="card bg-transparent border-0">
+    <div class="card-body">
+      <h2 class="text-white mb-4 d-flex justify-content-center">Sign up</h2>
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="mb-3">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="User Name*" 
+              formControlName="username"
+              [ngClass]="{'is-invalid': f['username'].touched && f['username'].errors}">
+            <div class="invalid-feedback" *ngIf="f['username'].touched && f['username'].errors">
+              <div *ngIf="f['username'].errors['required']">Username is required</div>
+              <div *ngIf="f['username'].errors['minlength']">Username must be at least 2 characters</div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <input 
+            type="email" 
+            class="form-control" 
+            placeholder="Email Address*" 
+            formControlName="email"
+            [ngClass]="{'is-invalid': f['email'].touched && f['email'].errors}">
+          <div class="invalid-feedback" *ngIf="f['email'].touched && f['email'].errors">
+            <div *ngIf="f['email'].errors['required']">Email is required</div>
+            <div *ngIf="f['email'].errors['email']">Please enter a valid email address</div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <input 
+            type="password" 
+            class="form-control" 
+            placeholder="Password*" 
+            formControlName="password"
+            [ngClass]="{'is-invalid': f['password'].touched && f['password'].errors}">
+          <div class="invalid-feedback" *ngIf="f['password'].touched && f['password'].errors">
+            <div *ngIf="f['password'].errors?.['required']">Password is required</div>
+            <div *ngIf="f['password'].errors?.['minlength']">Password must be at least 8 characters</div>
+            <div *ngIf="f['password'].errors?.['pattern']">
+              Password must contain at least one uppercase letter, one lowercase letter, 
+              one number and one special character
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <input 
+            type="password" 
+            class="form-control" 
+            placeholder="Confirm Password*" 
+            formControlName="confirmPassword"
+            [ngClass]="{'is-invalid': f['confirmPassword'].touched && (f['confirmPassword'].errors || signUpForm.errors?.['mismatch'])}">
+          <div class="invalid-feedback" *ngIf="f['confirmPassword'].touched && (f['confirmPassword'].errors || signUpForm.errors?.['mismatch'])">
+            <div *ngIf="f['confirmPassword'].errors?.['required']">Confirm password is required</div>
+            <div *ngIf="signUpForm.errors?.['mismatch']">Passwords do not match</div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-signin text-white w-100">Create Account</button>
+        <div class="text-center mt-3">
+          <span class="text-white">Already have an account? </span>
+          <a [routerLink]="['/signin']" class="text-white text-decoration-none"><b>Sign in</b></a>
+        </div>
+      </form>
+    </div>
+  </div>

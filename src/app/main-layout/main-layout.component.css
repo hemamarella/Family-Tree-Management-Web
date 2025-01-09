@@ -1,0 +1,68 @@
+.main-layout {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+  }
+  .main-content {
+    padding: 20px;
+    margin-top: 60px;
+  }
+
+  .bg-image {
+    background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+  }
+  
+  .overlay {
+    background: rgba(0, 0, 0, 0.4);
+    min-height: 100vh;
+  }
+  
+  .signin-container {
+    color: white;
+  }
+  
+  .form-control, .form-select {
+    background-color: rgb(255, 255, 255);
+  }
+  
+  .btn-signin {
+    background-color: #ff5722;
+    border: none;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-signin:hover {
+    background-color: #f4511e;
+  }
+  
+  .social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: #ff5722;
+  }
+  
+  .terms-text {
+    font-size: 0.8rem;
+  }
+  
+  .terms-text a {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .welcome-text {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  }
+  

@@ -1,0 +1,51 @@
+<!-- <div class="dashboard">
+    <div class="stats-container">
+      <app-stat-box 
+        title="Total Families" 
+        [value]="stats?.totalFamilies || 0">
+      </app-stat-box>
+      <app-stat-box 
+        title="Total Members" 
+        [value]="stats?.totalMembers || 0">
+      </app-stat-box>
+    </div>
+    
+    <div class="charts-container">
+      <app-members-chart
+        title="Members per Family"
+        [labels]="familyLabels"
+        [data]="familyData">
+      </app-members-chart>
+      
+      <app-members-chart
+        title="Members Added"
+        [labels]="timeFrameLabels"
+        [data]="timeFrameData"
+        [showToggle]="true"
+        [timeFrame]="selectedTimeFrame"
+        (timeFrameChange)="onTimeFrameChange($event)">
+      </app-members-chart>
+    </div>
+  </div> -->
+
+  <div class="dashboard">
+    <div class="stats-container">
+      <div class="stat-box">
+        <h2>Total Families</h2>
+        <div class="count">{{ stats?.totalFamilies || 0 }}</div>
+      </div>
+      <div class="stat-box">
+        <h2>Total Members</h2>
+        <div class="count">{{ stats?.totalMembers || 0 }}</div>
+      </div>
+    </div>
+    
+    <div class="charts-container">
+      <div class="chart-box">
+        <canvas #familyChart></canvas>
+      </div>
+      <div class="chart-box">
+        <canvas #monthlyChart></canvas>
+      </div>
+    </div>
+  </div>

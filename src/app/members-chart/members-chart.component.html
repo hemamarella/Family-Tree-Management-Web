@@ -1,0 +1,18 @@
+<div class="chart-box">
+    <div class="chart-header">
+      <h3>{{ title }}</h3>
+      <div *ngIf="showToggle" class="toggle-buttons">
+        <button 
+          [class.active]="timeFrame === 'monthly'"
+          (click)="setTimeFrame('monthly')">
+          Monthly
+        </button>
+        <button 
+          [class.active]="timeFrame === 'yearly'"
+          (click)="setTimeFrame('yearly')">
+          Yearly
+        </button>
+      </div>
+    </div>
+    <canvas #chart></canvas>
+  </div>
