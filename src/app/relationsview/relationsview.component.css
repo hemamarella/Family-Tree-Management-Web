@@ -1,0 +1,272 @@
+.container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+   
+  }
+  
+  .title {
+    color: #c9788c;
+    font-size: 40px;
+    text-align: center;
+  }
+ 
+  .lookup-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .lookup-table th,
+  .lookup-table td {
+    border: 1px solid #ddd;
+    padding: 20px;
+  }
+  
+  .lookup-table th {
+    background-color:#c9788c;
+    color: white;
+    text-align: left;
+  }
+  
+  .lookup-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .expand-btn {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    
+  }
+  
+
+  .edit-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  .fa-trash{
+    color: red;
+  }
+  .fa-pen-to-square
+  
+  {
+    color: black;
+  }
+  
+
+  .nested-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .nested-table th,
+  .nested-table td {
+    border: 1px solid #ccc;
+    padding: 6px;
+    font-size: 14px;
+  }
+  
+  .nested-table th {
+    background-color: #f0f0f0;
+  }
+
+
+.edit-form {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 500px;
+  margin: 30px auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+}
+
+.edit-form h3 {
+  text-align: center;
+  font-size: 22px;
+  color: #444;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.edit-form div {
+  margin-bottom: 20px;
+}
+
+.edit-form label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #666;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.edit-form input[type="text"],
+.edit-form textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+}
+
+.edit-form input:focus,
+.edit-form textarea:focus {
+  border-color: #c9788c;
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 0 6px rgba(98, 0, 234, 0.3);
+}
+
+.edit-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.edit-form button {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 15px;
+  margin: 10px 5px 0 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 45%;
+  text-align: center;
+}
+
+.edit-form button[type="submit"] {
+  background-color: #c9788c;
+  color: #ffffff;
+}
+
+.edit-form button[type="submit"]:hover {
+  background-color: #4500b3;
+}
+
+.edit-form button[type="button"] {
+  background-color: #e0e0e0;
+  color: #555;
+}
+
+.edit-form button[type="button"]:hover {
+  background-color: #c0c0c0;
+}
+
+@media screen and (max-width: 600px) {
+  .edit-form {
+    padding: 20px;
+  }
+
+  .edit-form button {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+
+.error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  resize: none;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.save-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #218838;
+}
+
+.close-btn {
+  background-color: #dc3545; 
+  color: white;
+}
+
+.close-btn:hover {
+  background-color: #c82333;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
