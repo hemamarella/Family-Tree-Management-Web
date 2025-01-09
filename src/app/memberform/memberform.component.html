@@ -3,10 +3,20 @@
   
     <form [formGroup]="memberForm" (ngSubmit)="onSubmit()" novalidate class="member-form">
         <h2 class="text-center fw-bold">Add Member</h2>
+        <div class="col-md-12 mb-3">
+          <label class="form-label">User Name</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-person"></i></span>
+            <input 
+              type="text" 
+              class="form-control"
+              formControlName="username" 
+              readonly>
+          </div>
+        </div>
       <!-- Existing Form Fields -->
       <div class="mb-2">
         <label for="FamilyId" class="form-label fw-semibold">Family Name*</label>
-        
         <select 
           id="FamilyId" 
           class="form-select" 

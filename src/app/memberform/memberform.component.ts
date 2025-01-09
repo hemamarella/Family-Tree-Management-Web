@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MemberserviceService } from '../memberservice.service';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -13,12 +14,13 @@ export class MemberformComponent implements OnInit{
   submitMessage: string = '';
   isSubmittedSuccessfully: boolean = false;
   displayModal: boolean = false;
+
   
   familyNames: any;
 users: any;
 maxDate: string;
 
-  constructor(private fb: FormBuilder, private memberService: MemberserviceService) {
+  constructor(private fb: FormBuilder, private memberService: MemberserviceService,private authService: AuthService ) {
 
     const today = new Date();
     this.maxDate = today.toISOString().split('T')[0];
@@ -27,6 +29,7 @@ maxDate: string;
   ngOnInit(): void {
     this.loadFamilyNames();
     this.memberForm = this.fb.group({
+      username: [{ value: '', disabled: true }],  // Disabled because it's read-only
       FamilyId: ['', Validators.required], 
       // UserId:[null], // Ensure this matches the form control in HTML
       FirstName: ['', [Validators.required, Validators.minLength(3),Validators.maxLength(20)]],
@@ -36,6 +39,12 @@ maxDate: string;
       uploadedPhoto :[null],
       Photo: [null],
       
+    });
+    const user = this.authService.getUserDetails();
+
+    this.memberForm.patchValue({
+      username: user.username,
+    email: user.email
     });
     
   }
