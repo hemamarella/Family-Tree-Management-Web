@@ -39,11 +39,6 @@ export class FamilyComponent {
   
     const user = this.authService.getUserDetails();
 
-    this.familyForm.patchValue({
-      username: user.username,
-    email: user.email
-    });
-
     // Initialize the form
     this.familyForm = this.fb.group({
       Id : null,
@@ -61,6 +56,12 @@ export class FamilyComponent {
       FamilyHeadImage: [null], // The photo input field (initially null),
       FamilyHeadImageDefault: [null]
     });
+    
+    this.familyForm.patchValue({
+      username: user.username,
+    email: user.email
+    });
+
   }
 
   // Custom Validator for min date (after January 1, 1900)
