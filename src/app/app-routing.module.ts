@@ -13,6 +13,7 @@ import { GridviewComponent } from './gridview/gridview.component';
 import { MemberformComponent } from './memberform/memberform.component';
 import { FamilyComponent } from './family/family.component';
 import { RelationsComponent } from './relations/relations.component';
+import { RelationsviewComponent } from './relationsview/relationsview.component';
 
 
 const routes: Routes = [
@@ -34,10 +35,11 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'profile', component: ProfileComponent },
       { path: 'change-password', component: ChangePasswordComponent },
-      { path: 'gridview', component: GridviewComponent },
       { path: 'familyform', component: FamilyComponent },
       { path: 'memberform', component: MemberformComponent },
-      { path: 'relationsform', component: RelationsComponent }
+      { path: 'relationsform', component: RelationsComponent },
+      { path: 'gridview', component: GridviewComponent },
+      { path: 'relationsview', component: RelationsviewComponent }
     ]
   }
 ];
