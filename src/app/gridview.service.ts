@@ -46,14 +46,14 @@ export interface Relationship {
 })
 export class GridviewService {
 
-  private apiUrl2='https://localhost:44312/api/FamilyTree/GetFamilyTreeData1';
-  private apiUrl3='https://localhost:44312/api/FamilyTree/api/family/delete';
-  private apiUrl4='https://localhost:44312/api/FamilyTree/DeleteRelationship';
-  private apiUrl5=' https://localhost:44312/api/FamilyTree/api/FamilyNames';
-  private apiUrl6='https://localhost:44312/api/FamilyTree/api/member/delete'
-  private apiUrl7='https://localhost:44312/api/FamilyTree/api/MemberRelations'
-  private apiUrl10='https://localhost:44312/api/FamilyTree/api/Members'
-  private apiUrl11='https://localhost:44312/api/FamilyTree/api/Relations'
+  private apiUrl2='https://localhost:44310/api/FamilyTree/GetFamilyTreeData1';
+  private apiUrl3='https://localhost:44310/api/FamilyTree/api/family/delete';
+  private apiUrl4='https://localhost:44310/api/FamilyTree/DeleteRelationship';
+  private apiUrl5=' https://localhost:44310/api/FamilyTree/api/FamilyNames';
+  private apiUrl6='https://localhost:44310/api/FamilyTree/api/member/delete'
+  private apiUrl7='https://localhost:44310/api/FamilyTree/api/MemberRelations'
+  private apiUrl10='https://localhost:44310/api/FamilyTree/api/Members'
+  private apiUrl11='https://localhost:44310/api/FamilyTree/api/Relations'
 
 
 

@@ -28,6 +28,8 @@
     loading = false;
     familyMembers: any[] = [];
     selectedMember: any = null;
+
+    constructor(private familytreeService: GridviewService) { }
     
     // Sample data structure
     lookups = [
@@ -43,7 +45,7 @@
             Id: 1,
             Photo: '', // Changed to number
             FirstName: '',
-            LastName: '',
+            // LastName: '',
             Gender: '',
             DateOfBirth: '',
             CreatedDate: '',
@@ -145,19 +147,9 @@
     }
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-    constructor(
-      private familytreeService: GridviewService
-    ) { }
+    // constructor(
+    //   private familytreeService: GridviewService
+    // ) { }
     ngOnInit(): void {
       this.loadFamilyNames();
     }

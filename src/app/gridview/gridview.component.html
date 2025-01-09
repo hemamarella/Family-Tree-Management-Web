@@ -48,7 +48,7 @@
                     <!-- <th> </th> -->
                     <th>Photo</th>
                     <th>First Name</th>
-                    <th>Last Name</th>
+                    <!-- <th>Last Name</th> -->
                     <th>Gender</th>
                     <th>Date Of Birth</th>
                     <th>CreatedDate</th>
@@ -64,9 +64,10 @@
                           {{ expandedSubRow === j ? '▼' : '▶' }}
                         </button>
                       </td> -->
-                       <td>{{ member.Photo }}</td>
+                       <!-- <td>{{ member.Photo }}</td> -->
+                      <td><img [src]="member.Photo" alt="Member Photo"></td>
                       <td>{{ member.FirstName}}</td>
-                      <td>{{ member.LastName}}</td>
+                      <!-- <td>{{ member.LastName}}</td> -->
                       <td>{{ member.Gender }}</td>
                       <td>{{ member.DateOfBirth| date: 'dd-MM-yyyy' }}</td>
                       <td>{{ member.CreatedDate | date: 'dd-MM-yyyy' }}</td>
@@ -93,7 +94,7 @@
     </table>
   </div>
   
-  <!-- -----FanilyNames edit form----- -->
+  <!-- -----FamilyNames edit form----- -->
   <div *ngIf="isEditFormVisible" class="modal-overlay">
     <div class="modal-content">
       <h3>Edit Family</h3>
