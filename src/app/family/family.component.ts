@@ -24,9 +24,14 @@ export class FamilyComponent {
   familyForm!: FormGroup;
   submitMessage: string = '';
   isSubmittedSuccessfully: boolean = false;
+<<<<<<< HEAD
   familyMembers: any[] = [];   
   displayModal: boolean = false;
 
+=======
+  familyMembers: any[] = []; 
+  today!: string; // Tell TypeScript this will be assigned in the constructor
+>>>>>>> f88069caefab3c857b91a1335ea5ea0f2a08b3dc
 
   constructor(
     private fb: FormBuilder,
@@ -34,12 +39,17 @@ export class FamilyComponent {
  private authService: AuthService  ) {}
 
   ngOnInit(): void {
+    const now = new Date(); // Current date
+
+    this.today = now.toISOString().split('T')[0]; // Format as 'yyyy-MM-dd'
+
     const today = new Date(); // Get current date
     const todayTimestamp = today.getTime(); // Get timestamp for today
     const minDate = new Date('1900-01-01'); // Minimum date
     const minDateTimestamp = minDate.getTime(); // Get timestamp for minimum date
   
     const user = this.authService.getUserDetails();
+    
 
     // Initialize the form
     this.familyForm = this.fb.group({
@@ -49,21 +59,44 @@ export class FamilyComponent {
       Color: ['', Validators.required],
       Description: [''],
       HeadOfTheFamily: ['', Validators.required],
-      DOB: ['', [
-        Validators.required,
-        this.minDateValidator(minDateTimestamp),
-        this.maxDateValidator(todayTimestamp)
-      ]],
+      DOB: [
+        '',
+        [
+          Validators.required,
+          this.minDateValidator(minDateTimestamp),
+          this.maxDateValidator(todayTimestamp),
+          this.fourDigitYearValidator(), // Add the new validator here
+        ],
+      ],
+      
       Gender: ['', Validators.required],
       FamilyHeadImage: [null], // The photo input field (initially null),
       FamilyHeadImageDefault: [null]
     });
 
+<<<<<<< HEAD
+=======
+
+
+    
+>>>>>>> f88069caefab3c857b91a1335ea5ea0f2a08b3dc
     this.familyForm.patchValue({
       username: user.username,
     email: user.email
     });
 
+  }
+
+  fourDigitYearValidator() {
+    return (control: any) => {
+      if (control.value) {
+        const year = new Date(control.value).getFullYear();
+        if (year < 1000 || year > 9999) {
+          return { invalidYear: true }; // Error object for invalid year
+        }
+      }
+      return null; // No error
+    };
   }
 
   // Custom Validator for min date (after January 1, 1900)
