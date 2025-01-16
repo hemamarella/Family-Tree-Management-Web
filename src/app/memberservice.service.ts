@@ -24,6 +24,7 @@ export class MemberserviceService {
   private apiUrl3='https://localhost:44310/GetRelations';
   private apiUrl4='https://localhost:44310/AddMemberRelations';
   private apiUrl6='https://localhost:44310/Addfamily';
+  private apiUrl20='https://localhost:44310/api/FamilyTree/GetTreeStructure'
 
   constructor(private http: HttpClient) {}
 
@@ -62,5 +63,9 @@ export class MemberserviceService {
     return this.http.post<any>(this.apiUrl6, formData);
   }
  
+
+  getFamilyTree(familyNameId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl20}/${familyNameId}`);
+  }
 }
 

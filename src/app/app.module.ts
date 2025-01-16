@@ -25,6 +25,7 @@ import { MemberformComponent } from './memberform/memberform.component';
 import { FamilyComponent } from './family/family.component';
 import { RelationsComponent } from './relations/relations.component';
 import { RelationsviewComponent } from './relationsview/relationsview.component';
+import { TreeComponent } from './tree/tree.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { RelationsviewComponent } from './relationsview/relationsview.component'
     MemberformComponent,
     FamilyComponent,
     RelationsComponent,
-    RelationsviewComponent
+    RelationsviewComponent,
+    TreeComponent
   ],
   imports: [
     BrowserModule,

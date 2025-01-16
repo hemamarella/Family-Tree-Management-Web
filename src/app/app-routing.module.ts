@@ -14,6 +14,7 @@ import { MemberformComponent } from './memberform/memberform.component';
 import { FamilyComponent } from './family/family.component';
 import { RelationsComponent } from './relations/relations.component';
 import { RelationsviewComponent } from './relationsview/relationsview.component';
+import { TreeComponent } from './tree/tree.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,9 @@ const routes: Routes = [
       { path: 'memberform', component: MemberformComponent },
       { path: 'relationsform', component: RelationsComponent },
       { path: 'gridview', component: GridviewComponent },
-      { path: 'relationsview', component: RelationsviewComponent }
+      { path: 'relationsview', component: RelationsviewComponent },
+      { path: 'Treeview', component: TreeComponent }
+
     ]
   }
 ];

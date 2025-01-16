@@ -1,0 +1,67 @@
+<div class="family-name-selector">
+    <label for="familyName">Select Family:</label>
+    <!-- Add (change) event listener to trigger onFamilyNameChange -->
+    <select id="familyName" (change)="onFamilyNameChange($event)">
+      <option *ngFor="let familyName of familyNames" [value]="familyName.Id">{{ familyName.Surname }}</option>
+    </select>
+  </div>
+  
+  <!-- Family Tree Display -->
+  <div class="family-tree-container">
+    <div class="tree">
+      <ng-container *ngFor="let member of familyTree">
+        <div class="member-node">
+          <div class="spouse-container">
+            <div class="member-card" [ngClass]="{'male': member.gender === 'Male', 'female': member.gender === 'Female'}">
+              <img [src]="member.Photo" alt="Member photo" class="member-photo">
+              <div class="member-info">
+                <h4>{{member.FirstName}}</h4>
+                <p>{{member.dateOfBirth | date}}</p>
+                <span class="relationship">{{member.Relation}}</span>
+
+              </div>
+            </div>
+          </div>
+  
+          <!-- Display children recursively if they exist -->
+          <ng-container *ngIf="member.children && member.children.length > 0">
+            <div class="children-container">
+              <div class="vertical-line"></div>
+              <div class="horizontal-line"></div>
+              <div class="children">
+                <ng-container *ngTemplateOutlet="memberTemplate; context: { $implicit: member.children }"></ng-container>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  
+  <!-- Template for each level of the tree -->
+  <ng-template #memberTemplate let-members>
+    <div class="member-level">
+      <div *ngFor="let member of members" class="member-node">
+        <div class="spouse-container">
+          <div class="member-card" [ngClass]="{'male': member.gender === 'Male', 'female': member.gender === 'Female'}">
+            <img [src]="member.Photo" alt="Member photo" class="member-photo">
+            <div class="member-info">
+              <h4>{{member.FirstName}}</h4>
+              <p>{{member.dateOfBirth | date}}</p>
+              <span class="relationship">{{member.Relation}}</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Recursive children display -->
+        <ng-container *ngIf="member.children && member.children.length > 0">
+          <div class="children-container">
+            <div class="vertical-line"></div>
+            <div class="horizontal-line"></div>
+            <div class="children">
+              <ng-container *ngTemplateOutlet="memberTemplate; context: { $implicit: member.children }"></ng-container>
+            </div>
+          </div>
+        </ng-container>
+    
+  
