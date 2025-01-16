@@ -24,14 +24,12 @@ export class FamilyComponent {
   familyForm!: FormGroup;
   submitMessage: string = '';
   isSubmittedSuccessfully: boolean = false;
-<<<<<<< HEAD
   familyMembers: any[] = [];   
   displayModal: boolean = false;
 
-=======
-  familyMembers: any[] = []; 
+
+  // familyMembers: any[] = []; 
   today!: string; // Tell TypeScript this will be assigned in the constructor
->>>>>>> f88069caefab3c857b91a1335ea5ea0f2a08b3dc
 
   constructor(
     private fb: FormBuilder,
@@ -74,12 +72,9 @@ export class FamilyComponent {
       FamilyHeadImageDefault: [null]
     });
 
-<<<<<<< HEAD
-=======
 
 
     
->>>>>>> f88069caefab3c857b91a1335ea5ea0f2a08b3dc
     this.familyForm.patchValue({
       username: user.username,
     email: user.email
