@@ -26,6 +26,8 @@ export class FamilyComponent {
   isSubmittedSuccessfully: boolean = false;
   familyMembers: any[] = []; 
   today!: string; // Tell TypeScript this will be assigned in the constructor
+  displayModal: boolean = false;
+
 
   constructor(
     private fb: FormBuilder,
@@ -160,6 +162,7 @@ export class FamilyComponent {
     if (this.familyForm.invalid) {
       this.submitMessage = 'Please fill out all required fields.';
       this.isSubmittedSuccessfully = false;
+      this.displayModal = true;
       return;
     }
     
@@ -189,11 +192,13 @@ export class FamilyComponent {
       (response) => {
         this.submitMessage = 'Form successfully submitted!';
         this.isSubmittedSuccessfully = true;
+        this.displayModal = true;
         console.log('Response:', response);
       },
       (error) => {
         this.submitMessage = 'Error occurred while submitting the form.';
         this.isSubmittedSuccessfully = false;
+        this.displayModal = true;
         console.error('Error:', error);
       }
     );
@@ -209,7 +214,7 @@ export class FamilyComponent {
   
 
   closeModal(): void {
-    this.submitMessage = '';
+    this.displayModal = false;
   }
   
 

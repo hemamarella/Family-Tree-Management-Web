@@ -11,6 +11,7 @@
           <!-- <th>Color</th> -->
           <th>Description</th>
           <th>CreatedDate</th>
+          <th>CreatedBy</th>
           <!-- <th>CreatedBy</th> -->
           <th>Action</th>
         </tr>
@@ -25,6 +26,7 @@
                 {{ expandedRow === i ? '▼' : '▶' }}
               </button>
             </td>
+            <td>{{lookup.CreatedBy}}</td>
             <td>{{ lookup.Surname }}</td>
             <!-- <td>{{ lookup.Color }}</td> -->
             <td>{{ lookup.Description}}</td>
