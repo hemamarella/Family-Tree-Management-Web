@@ -25,6 +25,8 @@ export class FamilyComponent {
   submitMessage: string = '';
   isSubmittedSuccessfully: boolean = false;
   familyMembers: any[] = [];   
+  displayModal: boolean = false;
+
 
   constructor(
     private fb: FormBuilder,
@@ -56,7 +58,7 @@ export class FamilyComponent {
       FamilyHeadImage: [null], // The photo input field (initially null),
       FamilyHeadImageDefault: [null]
     });
-    
+
     this.familyForm.patchValue({
       username: user.username,
     email: user.email
@@ -134,6 +136,7 @@ export class FamilyComponent {
     if (this.familyForm.invalid) {
       this.submitMessage = 'Please fill out all required fields.';
       this.isSubmittedSuccessfully = false;
+      this.displayModal = true;
       return;
     }
     
@@ -163,11 +166,14 @@ export class FamilyComponent {
       (response) => {
         this.submitMessage = 'Form successfully submitted!';
         this.isSubmittedSuccessfully = true;
+        this.familyForm.reset();
+        this.displayModal = true;
         console.log('Response:', response);
       },
       (error) => {
         this.submitMessage = 'Error occurred while submitting the form.';
         this.isSubmittedSuccessfully = false;
+        this.displayModal = true;
         console.error('Error:', error);
       }
     );
@@ -183,7 +189,8 @@ export class FamilyComponent {
   
 
   closeModal(): void {
-    this.submitMessage = '';
+    this.displayModal = false;
+
   }
   
 
