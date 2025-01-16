@@ -1,6 +1,18 @@
 <div class="container Center">
     <form [formGroup]="familyForm" (ngSubmit)="onSubmit()" class="family-form">
       <h2 class="form-title">Add Family </h2>
+
+      <!-- <div class="col-md-12 mb-3">
+        <label class="form-label">User Name</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="bi bi-person"></i></span>
+          <input 
+            type="text" 
+            class="form-control"
+            formControlName="username" 
+            readonly>
+        </div>
+      </div> -->
       
   
       <!-- Surname Input -->
@@ -74,18 +86,17 @@
           type="date"
           class="form-control"
           formControlName="DOB"
-          min="1900-01-01"
-          max="{{ today | date: 'yyyy-MM-dd' }}"
           [ngClass]="{
             'border-danger': familyForm.get('DOB')?.touched && familyForm.get('DOB')?.invalid
           }"
         />
         <div *ngIf="familyForm.get('DOB')?.touched && familyForm.get('DOB')?.invalid" class="text-danger">
           <div *ngIf="familyForm.get('DOB')?.hasError('required')">Date of Birth is required.</div>
-          <div *ngIf="familyForm.get('DOB')?.hasError('min')">Please select a valid Date of Birth.</div>
+          <div *ngIf="familyForm.get('DOB')?.hasError('min')">Date of Birth must be after January 1, 1900.</div>
           <div *ngIf="familyForm.get('DOB')?.hasError('max')">Date of Birth cannot be a future date.</div>
         </div>
-      </div>  
+      </div>
+  
       <!-- Gender Input -->
       <div class="form-group">
         <label for="Gender">Gender*</label>
@@ -143,4 +154,25 @@
       </div>
     </div>
   </div>
+
+
+
+
+  <div class="modal" tabindex="-1" [ngClass]="{ show: displayModal }"
+  style="display: block; background: rgba(0, 0, 0, 0.5);" *ngIf="displayModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ isSubmittedSuccessfully ? 'Success' : 'Error' }}</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{ submitMessage }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
   

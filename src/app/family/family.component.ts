@@ -24,9 +24,12 @@ export class FamilyComponent {
   familyForm!: FormGroup;
   submitMessage: string = '';
   isSubmittedSuccessfully: boolean = false;
-  familyMembers: any[] = []; 
-  today!: string; // Tell TypeScript this will be assigned in the constructor
+  familyMembers: any[] = [];   
   displayModal: boolean = false;
+
+
+  // familyMembers: any[] = []; 
+  today!: string; // Tell TypeScript this will be assigned in the constructor
 
 
   constructor(
@@ -192,7 +195,6 @@ export class FamilyComponent {
       (response) => {
         this.submitMessage = 'Form successfully submitted!';
         this.isSubmittedSuccessfully = true;
-        this.displayModal = true;
         console.log('Response:', response);
       },
       (error) => {
@@ -214,7 +216,7 @@ export class FamilyComponent {
   
 
   closeModal(): void {
-    this.displayModal = false;
+    this.submitMessage = '';
   }
   
 

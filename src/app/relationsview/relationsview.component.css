@@ -1,4 +1,4 @@
-.container {
+/* .container {
     font-family: Arial, sans-serif;
     padding: 20px;
    
@@ -269,4 +269,238 @@ button {
     opacity: 1;
     transform: scale(1);
   }
-}
+} */
+
+
+.container-fluid {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .title {
+    color: #ff5722;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  /* Table Styles */
+  .lookup-table {
+    width: 100%;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+  
+  .lookup-table thead {
+    background-color: #f8f9fa;
+  }
+  
+  .lookup-table th {
+    padding: 1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  .lookup-table td {
+    padding: 1rem;
+    color: #4a5568;
+    border-bottom: 1px solid #dee2e6;
+    vertical-align: middle;
+  }
+  
+  .lookup-table tbody tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* Expand Button */
+  .expand-btn {
+    background: none;
+    border: none;
+    color: #ff5722;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.25rem 0.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  .expand-btn:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Action Icons */
+  .fa-pen-to-square,
+  .fa-trash {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+  
+  .fa-pen-to-square {
+    color: #2196f3;
+  }
+  
+  .fa-trash {
+    color: #dc3545;
+  }
+  
+  .fa-pen-to-square:hover,
+  .fa-trash:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Member Photo */
+  .lookup-table img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .modal-content h3 {
+    color: #ff5722;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+  
+  /* Form Styles */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 500;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: #ff5722;
+    box-shadow: 0 0 0 0.2rem rgba(255, 87, 34, 0.25);
+    outline: none;
+  }
+  
+  .error {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  
+  /* Modal Buttons */
+  .modal-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  
+  .save-btn {
+    background-color: #ff5722;
+    border: none;
+    color: white;
+  }
+  
+  .save-btn:hover:not(:disabled) {
+    background-color: #f4511e;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(244, 81, 30, 0.25);
+  }
+  
+  .save-btn:disabled {
+    background-color: rgba(255, 87, 34, 0.5);
+    cursor: not-allowed;
+  }
+  
+  .close-btn {
+    background-color: #6c757d;
+    border: none;
+    color: white;
+  }
+  
+  .close-btn:hover {
+    background-color: #5a6268;
+    transform: translateY(-1px);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .container-fluid {
+      padding: 1rem;
+    }
+  
+    .lookup-table {
+      font-size: 0.875rem;
+    }
+  
+    .lookup-table th,
+    .lookup-table td {
+      padding: 0.75rem 0.5rem;
+    }
+  
+    .modal-content {
+      padding: 1.5rem;
+      width: 95%;
+    }
+  
+    .modal-buttons {
+      flex-direction: column;
+    }
+  
+    .btn {
+      width: 100%;
+    }
+  }
