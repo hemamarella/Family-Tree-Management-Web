@@ -44,7 +44,7 @@ export class FamilyComponent {
 
     const today = new Date(); // Get current date
     const todayTimestamp = today.getTime(); // Get timestamp for today
-    const minDate = new Date('1900-01-01'); // Minimum date
+    const minDate = new Date('1800-01-01'); // Minimum date
     const minDateTimestamp = minDate.getTime(); // Get timestamp for minimum date
   
     const user = this.authService.getUserDetails();
@@ -53,7 +53,7 @@ export class FamilyComponent {
     // Initialize the form
     this.familyForm = this.fb.group({
       Id : null,
-      username: [{ value: '', disabled: true }],  // Disabled because it's read-only
+      // username: [{ value: '', disabled: true }],  // Disabled because it's read-only
       Surname: ['', [Validators.required], [this.surnameValidator.bind(this)]],
       Color: ['', Validators.required],
       Description: [''],
@@ -195,28 +195,28 @@ export class FamilyComponent {
       (response) => {
         this.submitMessage = 'Form successfully submitted!';
         this.isSubmittedSuccessfully = true;
+        this.displayModal = true; // Ensure the modal is displayed
         console.log('Response:', response);
       },
       (error) => {
+       console.error('Error:', error);
         this.submitMessage = 'Error occurred while submitting the form.';
         this.isSubmittedSuccessfully = false;
         this.displayModal = true;
-        console.error('Error:', error);
       }
-    );
-    console.log(formData);
-    
+    );    
   }
 
   onClear(): void {
     this.familyForm.reset();  // Reset the form values
-    this.submitMessage = '';   // Clear any success/error messages
     this.isSubmittedSuccessfully = false;  // Reset submission status
   }
   
 
   closeModal(): void {
-    this.submitMessage = '';
+    this.displayModal = false;
+
+
   }
   
 

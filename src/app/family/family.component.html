@@ -136,29 +136,8 @@
       </div>
     </form>
   
-    <!-- Modal for Success/Error Message -->
-    <div class="modal" tabindex="-1" [ngClass]="{ show: displayModal }"
-    style="display: block; background: rgba(0, 0, 0, 0.5);" *ngIf="displayModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{ isSubmittedSuccessfully ? 'Success' : 'Error' }}</h5>
-          <button type="button" class="btn-close" (click)="closeModal()"></button>
-        </div>
-        <div class="modal-body">
-          <p>{{ submitMessage }}</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="closeModal()">Ok</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-
-  <div class="modal" tabindex="-1" [ngClass]="{ show: displayModal }"
+<!-- Modal for Success/Error Message -->
+<div class="modal" tabindex="-1" [ngClass]="{ show: displayModal }"
   style="display: block; background: rgba(0, 0, 0, 0.5);" *ngIf="displayModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -175,4 +154,10 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
   
